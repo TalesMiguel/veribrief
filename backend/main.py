@@ -8,6 +8,7 @@ from agents import (
     CitationVerifierAgent,
     FactConsistencyAgent,
     JudicialMemoAgent,
+    JudgeAgent,
 )
 from models import VerificationReport
 
@@ -31,7 +32,9 @@ def load_documents() -> dict[str, str]:
     return documents
 
 
-def run_pipeline(documents: dict[str, str]) -> VerificationReport:
+def run_verification_agents(documents: dict[str, str]):
+    """Runs extraction, citation verification, and fact consistency —
+    the 'generator' half of the pipeline, before independent review."""
     msj_text = documents.get("motion_for_summary_judgment", "")
     police_report = documents.get("police_report", "")
     medical_records = documents.get("medical_records_excerpt", "")
@@ -40,15 +43,26 @@ def run_pipeline(documents: dict[str, str]) -> VerificationReport:
     extractor = CitationExtractorAgent()
     verifier = CitationVerifierAgent()
     fact_checker = FactConsistencyAgent()
-    memo_agent = JudicialMemoAgent()
 
     citations = extractor.run(msj_text)
     citation_findings = verifier.run(citations)
     fact_findings = fact_checker.run(
         msj_text, police_report, medical_records, witness_statement
     )
-    judicial_memo = memo_agent.run(citation_findings, fact_findings)
+    return citation_findings, fact_findings
 
+
+def apply_judge(citation_findings, fact_findings, documents: dict[str, str]):
+    """Runs the independent critic stage (LLM-as-judge) over the generator's
+    findings. Only ever downgrades a risky verdict to `could_not_verify`;
+    never introduces new findings."""
+    judge = JudgeAgent()
+    reviewed_citations = [judge.review_citation(f) for f in citation_findings]
+    reviewed_facts = [judge.review_fact(f, documents) for f in fact_findings]
+    return reviewed_citations, reviewed_facts
+
+
+def build_report(citation_findings, fact_findings, judicial_memo: str) -> VerificationReport:
     num_issues = sum(
         1
         for f in citation_findings
@@ -76,6 +90,16 @@ def run_pipeline(documents: dict[str, str]) -> VerificationReport:
     )
 
 
+def run_pipeline(documents: dict[str, str]) -> VerificationReport:
+    """End-to-end pipeline: generator agents, then the judge critic stage,
+    then synthesis. This is what production traffic (and the eval harness by
+    default) sees."""
+    citation_findings, fact_findings = run_verification_agents(documents)
+    citation_findings, fact_findings = apply_judge(citation_findings, fact_findings, documents)
+    judicial_memo = JudicialMemoAgent().run(citation_findings, fact_findings)
+    return build_report(citation_findings, fact_findings, judicial_memo)
+
+
 @app.post("/analyze")
 async def analyze():
     def event_generator():
@@ -101,36 +125,16 @@ async def analyze():
         fact_findings = fact_checker.run(msj_text, police_report, medical_records, witness_statement)
         yield f"data: {json.dumps({'stage': 'facts_checked', 'count': len(fact_findings), 'message': f'Found {len(fact_findings)} fact contradictions'})}\n\n"
 
+        yield f"data: {json.dumps({'stage': 'judging', 'message': 'Independent judge reviewing risky findings...'})}\n\n"
+        citation_findings, fact_findings = apply_judge(citation_findings, fact_findings, documents)
+        yield f"data: {json.dumps({'stage': 'judged', 'message': 'Judge review complete'})}\n\n"
+
         yield f"data: {json.dumps({'stage': 'summarizing', 'message': 'Generating judicial summary...'})}\n\n"
         memo_agent = JudicialMemoAgent()
         judicial_memo = memo_agent.run(citation_findings, fact_findings)
         yield f"data: {json.dumps({'stage': 'memo_generated', 'message': 'Summary complete'})}\n\n"
 
-        num_issues = sum(
-            1
-            for f in citation_findings
-            if f.verdict in ("likely_fabricated", "does_not_support")
-            and f.confidence > 0.5
-        ) + sum(1 for f in fact_findings if f.verdict == "contradicts" and f.confidence > 0.5)
-
-        avg_confidence = (
-            sum(f.confidence for f in citation_findings + fact_findings)
-            / (len(citation_findings) + len(fact_findings))
-            if (citation_findings or fact_findings)
-            else 0
-        )
-
-        report = VerificationReport(
-            citations=citation_findings,
-            facts=fact_findings,
-            judicial_memo=judicial_memo,
-            summary={
-                "num_citations_checked": len(citation_findings),
-                "num_issues_found": num_issues,
-                "overall_confidence": round(avg_confidence, 2),
-                "document_pairs_checked": 4,
-            },
-        )
+        report = build_report(citation_findings, fact_findings, judicial_memo)
 
         yield f"data: {json.dumps({'stage': 'complete', 'report': report.model_dump()})}\n\n"
 
