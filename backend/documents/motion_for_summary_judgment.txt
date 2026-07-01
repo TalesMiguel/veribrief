@@ -1,0 +1,71 @@
+SUPERIOR COURT OF THE STATE OF CALIFORNIA
+COUNTY OF LOS ANGELES
+
+CARLOS RIVERA,                     )    Case No. BC-2023-04851
+         Plaintiff,                )
+                                   )    DEFENDANT'S MOTION FOR
+    v.                             )    SUMMARY JUDGMENT
+                                   )
+HARMON CONSTRUCTION GROUP, INC.,   )    Date:    September 15, 2023
+         Defendant.                )    Time:    9:00 a.m.
+                                   )    Dept:    14
+___________________________________)
+
+MEMORANDUM OF POINTS AND AUTHORITIES IN SUPPORT OF
+DEFENDANT'S MOTION FOR SUMMARY JUDGMENT
+
+I. INTRODUCTION
+
+Defendant Harmon Construction Group, Inc. ("Harmon") respectfully moves this Court for summary judgment on all claims brought by Plaintiff Carlos Rivera ("Rivera"). This action arises from a workplace incident on March 14, 2021, at a commercial construction site located at 2200 West Olympic Boulevard, Los Angeles, California. Rivera, a journeyman scaffolder employed by subcontractor Apex Staffing Solutions, alleges that he sustained injuries when a section of scaffolding collapsed beneath him. For the reasons set forth below, Harmon is entitled to judgment as a matter of law.
+
+II. STATEMENT OF UNDISPUTED MATERIAL FACTS
+
+1. Harmon served as the general contractor for the commercial renovation project at 2200 West Olympic Boulevard.
+
+2. Rivera was employed by Apex Staffing Solutions, a licensed subcontractor retained by Harmon for scaffolding assembly and related work.
+
+3. On or about March 14, 2021, Rivera was working on a scaffolding assembly at the project site when a section of the scaffolding gave way.
+
+4. Rivera was not wearing required personal protective equipment at the time of the incident, including fall-arrest equipment mandated by site safety protocols.
+
+5. Harmon maintained an active Injury and Illness Prevention Program ("IIPP") and had passed all OSHA inspections conducted at the site during the relevant period, the most recent being February 26, 2021.
+
+6. Rivera filed the instant action on March 10, 2023.
+
+III. ARGUMENT
+
+A. Harmon Is Not Liable Under the Privette Doctrine
+
+Under California law, a hirer of an independent contractor is presumptively not liable for injuries sustained by the contractor's employees while performing the contracted work. Privette v. Superior Court, 5 Cal.4th 689, 695 (1993). As the Supreme Court held, "A hirer is never liable for injuries sustained by an independent contractor's employees when the injuries arise from the contracted work." Id. at 702. This doctrine rests on the principle that the independent contractor — not the hirer — controls the manner and method of work performance and bears responsibility for workplace safety.
+
+Here, the undisputed facts establish that Apex Staffing Solutions — not Harmon — was the employer responsible for scaffolding operations and for ensuring its employees followed appropriate safety procedures. Rivera's claims against Harmon are barred by the Privette doctrine. See also Whitmore v. Delgado Scaffolding Co., 334 F. Supp. 2d 1189, 1195 (C.D. Cal. 2004) (granting summary judgment to hirer where subcontractor controlled scaffolding operations and the injured worker assumed risks inherent to the trade).
+
+B. OSHA Compliance Establishes a Presumption of Reasonable Care
+
+Harmon's documented compliance with all applicable OSHA regulations during the relevant period creates a rebuttable presumption that it exercised reasonable care with respect to worksite safety. Kellerman v. Pacific Coast Construction, Inc., 887 F.2d 1204, 1209 (9th Cir. 1991) ("Where an employer demonstrates full compliance with applicable OSHA standards, it is entitled to a rebuttable presumption that it met the standard of care in negligence."). Rivera has presented no evidence to rebut this presumption.
+
+Furthermore, the California Supreme Court has recognized that compliance with statutory safety requirements is highly probative of the exercise of due care. Seabright Insurance Co. v. US Airways, Inc., 52 Cal.4th 590, 598 (2011). Harmon's unblemished OSHA inspection record demonstrates that its safety practices met or exceeded all regulatory requirements, effectively insulating it from tort liability predicated on alleged safety failures at the site.1
+
+C. Rivera Assumed the Risk Inherent in His Trade
+
+Rivera is a journeyman scaffolder with over eight years of experience in commercial construction. The risks associated with working at height on scaffolding are inherent to his trade and were well known to him at the time of the incident. Under the doctrine of assumption of risk, a plaintiff who voluntarily encounters a known danger cannot recover for injuries arising from that danger. As a trained professional, Rivera understood the hazards of scaffolding work and accepted them as part of his employment.
+
+D. Rivera's Claims Are Time-Barred
+
+The incident giving rise to this action occurred on March 14, 2021. Rivera did not file his complaint until March 10, 2023 — one year and 362 days after the incident. Under California Code of Civil Procedure Section 335.1, the statute of limitations for personal injury claims is two years. While Rivera's filing falls nominally within this window, Harmon reserves the right to challenge the accrual date based on Rivera's own knowledge of his injuries, which the medical records indicate were immediately apparent.
+
+IV. CONCLUSION
+
+For the foregoing reasons, Harmon Construction Group respectfully requests that this Court grant summary judgment in its favor on all claims.
+
+Dated: August 28, 2023
+
+WHITFIELD, OAKES & CASTELLANO LLP
+
+By: _________________________
+    Nathan R. Whitfield
+    Attorneys for Defendant
+    Harmon Construction Group, Inc.
+
+_______________
+1. See also Torres v. Granite Falls Dev. Corp., 198 Cal.App.4th 223 (2011); Blackwell v. Sunrise Contractors, Inc., 45 Cal.App.4th 1012 (1996); Dixon v. Lone Star Structural, LLC, 387 S.W.3d 154 (Tex. App. 2012); Okafor v. Brightline Builders, Inc., 291 So.3d 614 (Fla. Dist. Ct. App. 2019); Nguyen v. Allied Pacific Construction Co., 112 Cal.App.4th 845 (2003); Reeves v. Summit Engineering Group, 78 Cal.App.4th 531 (2000); Rivera v. Cornerstone Grading & Paving, Inc., L.A. Superior Court Case No. BC-2019-33021 (unpublished minute order, Feb. 3, 2020) (denying summary judgment where subcontractor retained control over safety equipment).

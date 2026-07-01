@@ -1,0 +1,71 @@
+CALIFORNIA MEDICAL CENTER
+Department of Emergency Medicine
+
+-----------------------------------------------------------------------
+
+PATIENT:            Carlos M. Rivera
+DOB:                06/18/1985
+MRN:                CMC-0394782
+DATE OF ADMISSION:  March 12, 2021
+TIME OF ADMISSION:  11:32 AM
+ATTENDING:          Dr. Anika Patel, MD
+
+-----------------------------------------------------------------------
+
+EMERGENCY DEPARTMENT NOTES
+
+CHIEF COMPLAINT: 36-year-old male presenting with left leg pain, lower back pain, and left wrist pain following a fall from scaffolding at a construction site. Patient reports falling approximately 14 feet when the scaffolding structure he was working on collapsed beneath him.
+
+HISTORY OF PRESENT ILLNESS: Patient was brought in by LAFD paramedics following a workplace accident occurring at approximately 10:45 AM on March 12, 2021. Patient was working on scaffolding at a commercial construction site when the structure gave way. He fell approximately 14 feet to the ground. He reports landing on his left side. He denies loss of consciousness. He reports immediate onset of severe pain in his left lower extremity, lower back, and left wrist. Pain described as sharp, rated 8/10 in left leg, 7/10 in lower back, 6/10 in left wrist.
+
+PHYSICAL EXAMINATION:
+- General: Alert, oriented x4, in moderate distress secondary to pain
+- Left Lower Extremity: Obvious deformity of the left tibia at mid-shaft. Significant swelling and ecchymosis. Distal pulses intact. Sensation intact to light touch distally.
+- Lumbar Spine: Tenderness to palpation at L3-L5. Paraspinal muscle spasm bilaterally. No step-off deformity. Neurological exam of lower extremities grossly intact.
+- Left Wrist: Swelling and tenderness over the distal radius. Limited range of motion secondary to pain. Distal pulses intact.
+
+IMAGING:
+- X-ray, left tibia/fibula: Comminuted fracture of the left tibial shaft at the junction of the middle and distal thirds. Fibula intact.
+- X-ray, lumbar spine: No acute fracture. Mild disc space narrowing at L4-L5 (may be pre-existing vs. acute).
+- X-ray, left wrist: Non-displaced fracture of the distal radius (Colles' fracture).
+- CT, lumbar spine: L4-L5 disc bulge with mild central canal narrowing. No evidence of acute bony injury.
+
+DIAGNOSIS:
+1. Comminuted fracture, left tibial shaft
+2. Colles' fracture (non-displaced), left distal radius
+3. Lumbar disc bulge, L4-L5, with paraspinal muscle strain
+4. Multiple contusions, left flank and left hip
+
+TREATMENT AND PLAN:
+- Left tibial fracture: Orthopedic surgery consultation obtained. Patient scheduled for intramedullary nailing of left tibia (Dr. James Okonkwo).
+- Left wrist: Short-arm cast applied. Follow-up with orthopedics in 2 weeks.
+- Lumbar spine: Conservative management with analgesics, muscle relaxants, and physical therapy referral.
+- Pain management: Morphine 4mg IV administered in ED. Prescribed hydrocodone/acetaminophen 5/325 for breakthrough pain.
+- Admitted to surgical floor for tibial fixation.
+
+-----------------------------------------------------------------------
+
+ORTHOPEDIC FOLLOW-UP NOTE
+
+PATIENT:            Carlos M. Rivera
+DATE:               April 9, 2021
+PROVIDER:           Dr. James Okonkwo, MD — Orthopedic Surgery
+
+SUBJECTIVE: Patient presents for 4-week post-operative follow-up. He underwent intramedullary nailing of the left tibial shaft fracture on March 13, 2021. He reports improving but persistent pain in the left leg (4/10). He is ambulating with crutches. He reports ongoing lower back pain (5/10) that is aggravated by prolonged sitting. Left wrist pain has improved significantly (2/10).
+
+OBJECTIVE:
+- Left leg: Surgical incision well-healed. No signs of infection. Mild residual swelling. Knee and ankle ROM improving.
+- Left wrist: Cast removed. Mild stiffness. X-ray shows fracture healing in good alignment.
+- Lumbar spine: Continued tenderness at L4-L5. Straight leg raise mildly positive on left.
+
+IMAGING:
+- X-ray, left tibia: Intramedullary nail in good position. Early callus formation at fracture site. Alignment maintained.
+- X-ray, left wrist: Healing fracture, good alignment, no displacement.
+
+ASSESSMENT AND PLAN:
+1. Left tibial fracture — healing appropriately. Continue weight-bearing as tolerated with crutches. Transition to walking boot at 6 weeks if continued progress.
+2. Left wrist fracture — healed. Begin gentle ROM exercises. Physical therapy referral.
+3. Lumbar disc bulge — refer to physical therapy for core stabilization program. If symptoms persist beyond 8 weeks, consider MRI for further evaluation.
+4. Patient remains unable to return to construction work. Estimated return to full duty: 4-6 months pending fracture healing and lumbar spine recovery.
+
+NEXT FOLLOW-UP: 4 weeks (May 7, 2021)
