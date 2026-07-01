@@ -251,6 +251,13 @@ Architecture has a huge impact, but prompt engineering can work miracles. The ri
 
 ## Part 4: What the Corrected Eval Actually Found (Self-Critical)
 
+**Update, see Part 5:** findings 1 and 2 below were later re-examined with an
+independent, larger-model judge and both turned out to be mislabeled test-oracle
+items, not real system errors. We are leaving this section as originally written,
+rather than editing it after the fact, because the retraction is itself the more
+interesting result — read this section for what we believed at the time, and Part
+5 for what an independent audit found.
+
 Rebuilding the harness with negative controls, a harder uncatalogued defect, and
 an explicit abstention check surfaced three gaps worth naming plainly, without
 softening them:
@@ -287,3 +294,68 @@ structured outputs, and abstention *option* are still sound design choices. What
 was wrong was reporting single-run, oracle-incomplete numbers as if they
 characterized the system's reliability. The fix was not a bigger model or a
 cleverer prompt — it was admitting the test itself was under-specified.
+
+---
+
+## Part 5: Adding a Judge, and What It Actually Changed
+
+We added a fifth agent (`agents/judge.py`): an independent critic that re-reviews
+the verifier's and fact-checker's riskiest, highest-confidence findings against
+the source evidence, and can veto a finding down to `could_not_verify` when its
+own reasoning doesn't hold up. This is the standard generator/critic (LLM-as-judge)
+pattern, and the goal was to see whether a second pass could catch the two
+problems flagged in Part 4: the SeaBright false positive and the failure to
+abstain on the unpublished-order citation.
+
+**First attempt — same-family judge.** We ran the judge using the same model as
+the generator agents (Gemini flash-lite). It upheld both original verdicts
+unchanged. Read narrowly, this looks like the critic stage did nothing. Read as a
+finding, it's actually informative: a same-family, same-capability judge
+reviewing its own sibling's output has no obvious reason to disagree with it —
+both instances were trained the same way and are, in effect, being asked to grade
+their own homework. This is a known concern in the LLM-as-judge literature (the
+evaluator can share the evaluated system's blind spots), and this run reproduced
+it directly rather than just citing it.
+
+**Second attempt — larger model, same family.** We then pinned the judge to a
+larger Gemini model than the generator, to isolate one variable: is the failure
+mode about model *family*, or about model *capability*? The result was the same:
+both verdicts upheld, unchanged. This ruled out "just use a bigger model in the
+same family" as a fix, at least for this case.
+
+**What the larger judge's reasoning actually said.** Because the judge always
+returns its reasoning even when it upholds a verdict, we could read *why* it
+agreed, not just *that* it agreed — and this is where the real finding is. For
+SeaBright, the judge gave a specific, checkable legal explanation for why the
+brief's attributed proposition does not match the case's actual holding: the
+citation is real, but *our own synthetic test document* mischaracterized what it
+stands for. For the unpublished-order citation, the judge pointed out that the
+docket-number format ("BC-2019-33021") doesn't match the real court's numbering
+conventions — a legitimate, checkable signal we hadn't considered when we
+designed that item to be "impossible to verify."
+
+**The actual result: two test-oracle errors found, not two system errors.** Both
+items we had built specifically to expose weaknesses — one negative control, one
+hard/unverifiable case — turned out to be mislabeled by us, the test authors, not
+mishandled by the pipeline. We retracted both labels in the code
+(`RETRACTED_LABELS` in `backend/run_evals.py`) rather than quietly deleting them,
+promoted the underlying findings to two new known flaws (F7, F8), and recomputed
+recall: 7/8 (87.5%), up from 5/6, entirely from correcting our own labeling
+mistakes — not from the system getting anything new right, and not from
+re-running until we got a better number.
+
+**Why we didn't just build a new negative control to replace the retracted one.**
+We considered it, and decided against it under time pressure: doing it carelessly
+would just risk shipping a *third* mislabeled item. The honest state of this
+project right now is that we do not have a validated negative control or hard
+case, and the harness says so explicitly (`N/A`, not a fabricated number) rather
+than hiding the gap.
+
+**The general lesson, stripped of the legal specifics:** building reliable ground
+truth for an LLM evaluation is not a one-time setup step you get right by
+inspection — it required a second, independent, differently-scaled model, plus a
+human actually reading its reasoning, to catch two labeling mistakes that looked
+obviously correct when we wrote them. If constructing gold labels this carefully
+is this easy to get wrong even for a toy case with five sentences of relevant
+context, it should be treated as a first-class part of the system, not an
+afterthought bolted onto the README.
