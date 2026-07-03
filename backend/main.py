@@ -52,13 +52,15 @@ def run_verification_agents(documents: dict[str, str]):
     return citation_findings, fact_findings
 
 
-def apply_judge(citation_findings, fact_findings, documents: dict[str, str]):
+def apply_judge(citation_findings, fact_findings, documents: dict[str, str], judge_model: str | None = None):
     """Runs the independent critic stage (LLM-as-judge) over the generator's
     findings. Only ever downgrades a risky verdict to `could_not_verify`;
-    never introduces new findings."""
-    judge = JudgeAgent()
-    reviewed_citations = [judge.review_citation(f) for f in citation_findings]
-    reviewed_facts = [judge.review_fact(f, documents) for f in fact_findings]
+    never introduces new findings. `judge_model` overrides the default
+    larger-model judge (see agents/judge.py) — used by the eval harness to
+    actually run the same-family-judge condition instead of only describing it."""
+    judge = JudgeAgent(judge_model=judge_model)
+    reviewed_citations = judge.review_citations(citation_findings)
+    reviewed_facts = judge.review_facts(fact_findings, documents)
     return reviewed_citations, reviewed_facts
 
 
