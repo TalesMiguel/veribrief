@@ -12,7 +12,7 @@ from models import CitationFinding, FactFinding
 
 EVAL_RUNS_DIR = Path(__file__).parent.parent / "outputs"
 METRICS_LOG = EVAL_RUNS_DIR / "metrics_log.jsonl"
-HISTORICAL_V1_FILE = EVAL_RUNS_DIR / "historical_v1_mock_api_call.json"
+HISTORICAL_V1_FILE = EVAL_RUNS_DIR / "historical_v1_cached_api_call.json"
 
 # Known injected flaws the pipeline is expected to catch.
 KNOWN_FLAWS = {
@@ -101,7 +101,7 @@ HARD_CASES: dict = {}
 # Historical protocol snapshots (see --protocol-version below). These are not
 # hypothetical reconstructions: v1's flaw set and cached response are the
 # actual first-commit state of this repo (`0_mock_api_call.json`, deleted in
-# the second commit and restored here as eval_runs/historical_v1_mock_api_call.json
+# the second commit and restored here as outputs/historical_v1_cached_api_call.json
 # via `git show 4ef3ff1:backend/0_mock_api_call.json`). v2 reuses the current
 # cached response with the pre-retraction registry (C1/H1 still labeled as a
 # negative control and a hard case, before the judge audit in Section 6).
