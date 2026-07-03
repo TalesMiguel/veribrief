@@ -1,6 +1,18 @@
+import os
 import sys
+import time
+import json
+import glob as globmod
+import statistics
+import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
-from main import load_documents, run_pipeline, run_verification_agents, apply_judge, build_report
+from main import load_documents, run_verification_agents, apply_judge, build_report
+from models import CitationFinding, FactFinding
+
+EVAL_RUNS_DIR = Path(__file__).parent / "eval_runs"
+METRICS_LOG = EVAL_RUNS_DIR / "metrics_log.jsonl"
+HISTORICAL_V1_FILE = EVAL_RUNS_DIR / "historical_v1_mock_api_call.json"
 
 # Known injected flaws the pipeline is expected to catch.
 KNOWN_FLAWS = {
@@ -74,16 +86,76 @@ KNOWN_FLAWS = {
     },
 }
 
-# Negative controls and "hard, unverifiable" cases: intentionally empty.
-# We originally shipped one of each (a real-but-mischaracterized citation as
-# a negative control, and an unpublished-order citation as an unverifiable
-# hard case). Both were retracted after an independent judge review — see
-# RETRACTED_LABELS — because on closer inspection neither actually tested
-# what it was meant to test. We are leaving these registries empty and
-# documented, rather than replacing them with a fresh, unaudited guess, so
-# the harness does not silently repeat the same mistake.
+# Negative controls and "hard, unverifiable" cases: intentionally empty in the
+# current (v3) protocol. We originally shipped one of each (a real-but-
+# mischaracterized citation as a negative control, and an unpublished-order
+# citation as an unverifiable hard case). Both were retracted after an
+# independent judge review — see RETRACTED_LABELS — because on closer
+# inspection neither actually tested what it was meant to test. We are leaving
+# these registries empty and documented, rather than replacing them with a
+# fresh, unaudited guess, so the harness does not silently repeat the same
+# mistake.
 KNOWN_CORRECT: dict = {}
 HARD_CASES: dict = {}
+
+# Historical protocol snapshots (see --protocol-version below). These are not
+# hypothetical reconstructions: v1's flaw set and cached response are the
+# actual first-commit state of this repo (`0_mock_api_call.json`, deleted in
+# the second commit and restored here as eval_runs/historical_v1_mock_api_call.json
+# via `git show 4ef3ff1:backend/0_mock_api_call.json`). v2 reuses the current
+# cached response with the pre-retraction registry (C1/H1 still labeled as a
+# negative control and a hard case, before the judge audit in Section 6).
+PROTOCOL_VERSIONS = {
+    1: {
+        "flaw_ids": ["F1", "F2", "F3", "F4", "F5"],
+        "known_correct": {},
+        "hard_cases": {},
+        "cached_file": HISTORICAL_V1_FILE,
+        "note": (
+            "Original protocol: 5 known flaws, no negative controls, no hard "
+            "cases. Precision reported is the legacy (biased) figure, since "
+            "the corrected precision formula did not exist yet at this stage."
+        ),
+    },
+    2: {
+        "flaw_ids": ["F1", "F2", "F3", "F4", "F5", "F6"],
+        "known_correct": {
+            "C1": {
+                "keywords": ["seabright", "us airways"],
+                "description": (
+                    "SeaBright Insurance Co. v. US Airways — labeled (at the "
+                    "time) as a real, correctly-supporting citation; retracted "
+                    "in Section 6 and reclassified as flaw F7."
+                ),
+            }
+        },
+        "hard_cases": {
+            "H1": {
+                "keywords": ["cornerstone grading", "bc-2019-33021"],
+                "description": (
+                    "Rivera v. Cornerstone Grading & Paving — labeled (at the "
+                    "time) as categorically unverifiable; retracted in Section "
+                    "6 and reclassified as flaw F8."
+                ),
+            }
+        },
+        "cached_file": None,  # use whatever --cache file the caller loads
+        "note": (
+            "Corrected protocol: negative control (C1) and hard case (H1) "
+            "added, before the judge audit retracted both labels."
+        ),
+    },
+    3: {
+        "flaw_ids": list(KNOWN_FLAWS.keys()),
+        "known_correct": {},
+        "hard_cases": {},
+        "cached_file": None,
+        "note": (
+            "Final protocol, after RETRACTED_LABELS: C1/H1 promoted to F7/F8, "
+            "no validated negative control or hard case currently registered."
+        ),
+    },
+}
 
 RETRACTED_LABELS = {
     "C1 (retracted)": (
@@ -124,7 +196,20 @@ def find_match(combined: str, registry: dict) -> str | None:
     return None
 
 
-def evaluate_pipeline(report_dict: dict) -> dict:
+def evaluate_pipeline(
+    report_dict: dict,
+    known_flaws: dict | None = None,
+    known_correct: dict | None = None,
+    hard_cases: dict | None = None,
+) -> dict:
+    """Evaluates a pipeline report against a given protocol registry.
+    Defaults to the current (v3) registries so existing callers/behavior are
+    unchanged; pass explicit registries to replay an earlier protocol version
+    (see PROTOCOL_VERSIONS / --protocol-version)."""
+    known_flaws = KNOWN_FLAWS if known_flaws is None else known_flaws
+    known_correct = KNOWN_CORRECT if known_correct is None else known_correct
+    hard_cases = HARD_CASES if hard_cases is None else hard_cases
+
     report = report_dict["report"]
 
     matched_flaws = set()
@@ -148,7 +233,7 @@ def evaluate_pipeline(report_dict: dict) -> dict:
         # incorrectly credited F1 for unrelated findings.
         combined = case_name
 
-        for hard_id, info in HARD_CASES.items():
+        for hard_id, info in hard_cases.items():
             if matches_keywords(case_name, info["keywords"]):
                 if verdict == "could_not_verify":
                     abstained_hard.add(hard_id)
@@ -158,12 +243,12 @@ def evaluate_pipeline(report_dict: dict) -> dict:
         if verdict in ("likely_fabricated", "does_not_support") and confidence > 0.5:
             legacy_total_flags += 1
 
-            flaw_id = find_match(combined, KNOWN_FLAWS)
+            flaw_id = find_match(combined, known_flaws)
             if flaw_id:
                 matched_flaws.add(flaw_id)
                 continue
 
-            correct_id = find_match(combined, KNOWN_CORRECT)
+            correct_id = find_match(combined, known_correct)
             if correct_id:
                 matched_correct_as_fp.add(correct_id)
                 if confidence > 0.9:
@@ -181,7 +266,7 @@ def evaluate_pipeline(report_dict: dict) -> dict:
             combined = f"{finding['claim']} {finding['source_quote']}"
 
             flaw_id = None
-            for fid, info in KNOWN_FLAWS.items():
+            for fid, info in known_flaws.items():
                 if info["type"] in ("fact_contradiction", "date_contradiction") and matches_keywords(
                     combined, info["keywords"]
                 ):
@@ -205,16 +290,16 @@ def evaluate_pipeline(report_dict: dict) -> dict:
     false_positives = len(matched_correct_as_fp)
     labeled_total = true_positives + false_positives
 
-    recall = len(matched_flaws) / len(KNOWN_FLAWS) if KNOWN_FLAWS else 0
+    recall = len(matched_flaws) / len(known_flaws) if known_flaws else 0
     # Precision and hallucination rate over the labeled universe are only
     # meaningful if we actually have negative controls to catch a false
-    # positive against. With KNOWN_CORRECT empty (see the retraction note
+    # positive against. With known_correct empty (see the retraction note
     # above the registries), labeled_total collapses to true_positives and
     # the formula below would silently report a trivial, uninformative 100%.
     # We report None (N/A) instead of a number that looks precise but isn't.
-    precision = (true_positives / labeled_total) if KNOWN_CORRECT and labeled_total > 0 else None
-    hallucination_rate = (false_positives / labeled_total) if KNOWN_CORRECT and labeled_total > 0 else None
-    abstention_rate = (len(abstained_hard) / len(HARD_CASES)) if HARD_CASES else None
+    precision = (true_positives / labeled_total) if known_correct and labeled_total > 0 else None
+    hallucination_rate = (false_positives / labeled_total) if known_correct and labeled_total > 0 else None
+    abstention_rate = (len(abstained_hard) / len(hard_cases)) if hard_cases else None
 
     legacy_precision = true_positives / legacy_total_flags if legacy_total_flags > 0 else 0
     legacy_hallucination_rate = (
@@ -237,8 +322,281 @@ def evaluate_pipeline(report_dict: dict) -> dict:
     }
 
 
+def fmt_pct(value):
+    return f"{value:.1%}" if value is not None else "N/A"
+
+
+def run_protocol_version(version: int, cache_file: Path | None):
+    """Replays a historical (or current) evaluation protocol against a cached
+    pipeline report, per PROTOCOL_VERSIONS. No API calls are made — this is
+    purely re-scoring an existing cached response under a different gabarito,
+    so every number in the paper's Section 5/7 can be regenerated by a
+    reader from files already committed to the repo."""
+    spec = PROTOCOL_VERSIONS[version]
+    flaw_registry = {fid: KNOWN_FLAWS[fid] for fid in spec["flaw_ids"]}
+    resolved_file = spec["cached_file"] or cache_file
+    if resolved_file is None or not resolved_file.exists():
+        print(f"ERROR: no cached file available for protocol version {version} ({resolved_file})")
+        sys.exit(1)
+
+    with open(resolved_file) as f:
+        report = json.load(f)
+
+    metrics = evaluate_pipeline(
+        report,
+        known_flaws=flaw_registry,
+        known_correct=spec["known_correct"],
+        hard_cases=spec["hard_cases"],
+    )
+
+    print("\n" + "=" * 80)
+    print(f"PROTOCOL VERSION {version} — {spec['note']}")
+    print(f"Cached file: {resolved_file.name}")
+    print("=" * 80)
+    print(f"Recall:                {fmt_pct(metrics['recall'])} "
+          f"({len(metrics['matched_flaws'])}/{len(flaw_registry)})")
+    if spec["known_correct"]:
+        print(f"Precision:              {fmt_pct(metrics['precision'])}")
+        print(f"Hallucination rate:     {fmt_pct(metrics['hallucination_rate'])}")
+    else:
+        print(f"Precision (legacy, unlabeled counted as FP): {fmt_pct(metrics['legacy_precision'])}")
+    if spec["hard_cases"]:
+        print(f"Abstention rate (hard): {fmt_pct(metrics['abstention_rate'])} "
+              f"({len(metrics['abstained_hard_cases'])}/{len(spec['hard_cases'])})")
+    print("=" * 80 + "\n")
+    return metrics
+
+
+def git_commit_hash() -> str:
+    try:
+        return subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=Path(__file__).parent.parent,
+            capture_output=True, text=True, check=True,
+        ).stdout.strip()
+    except Exception:
+        return "unknown"
+
+
+def append_metrics_log(entry: dict):
+    EVAL_RUNS_DIR.mkdir(exist_ok=True)
+    with open(METRICS_LOG, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+
+
+def run_repeated(
+    n: int,
+    model: str | None,
+    judge_model: str | None,
+    sleep_seconds: float,
+    skip_judge: bool = False,
+    temperature: float | None = None,
+):
+    """Runs the full live pipeline N times against the current (v3) registry,
+    persisting each run's raw output and metrics so the paper can report a
+    mean/std over real repeated executions instead of a single cached run."""
+    EVAL_RUNS_DIR.mkdir(exist_ok=True)
+
+    if model:
+        os.environ["GEMINI_MODEL_OVERRIDE"] = model
+    if temperature is not None:
+        os.environ["LLM_TEMPERATURE_OVERRIDE"] = str(temperature)
+    label = model or os.getenv("GEMINI_MODEL_OVERRIDE") or "default"
+    if temperature is not None:
+        label = f"{label}_temp{temperature}"
+    judge_label = "skipped" if skip_judge else (judge_model or "default-larger-model")
+
+    print(f"Running {n} live pipeline execution(s) — generator model: {label}, judge model: {judge_label}, temperature: {temperature if temperature is not None else 'default (0, except facts=0.1)'}")
+    documents = load_documents()
+
+    pre_recalls, post_recalls = [], []
+    run_records = []
+
+    for k in range(1, n + 1):
+        print(f"\n--- run {k}/{n} ---")
+        ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+        # Generator stage and judge stage are decoupled: a judge-stage failure
+        # (e.g. the judge model's free-tier daily quota running out) should
+        # not discard a generator run that already succeeded and already
+        # spent its own API quota.
+        try:
+            raw_citations, raw_facts = run_verification_agents(documents)
+        except Exception as e:
+            print(f"  run {k} FAILED (generator stage): {e}")
+            continue
+
+        pre_report = {"report": build_report(raw_citations, raw_facts, judicial_memo=None).model_dump()}
+        pre_metrics = evaluate_pipeline(pre_report)
+        pre_file = EVAL_RUNS_DIR / f"{ts}_{label}_run{k}_pre.json"
+        with open(pre_file, "w") as f:
+            json.dump(pre_report, f, indent=2)
+        print(f"  pre-judge recall:  {fmt_pct(pre_metrics['recall'])} ({len(pre_metrics['matched_flaws'])}/{len(KNOWN_FLAWS)})")
+        pre_recalls.append(pre_metrics["recall"])
+
+        post_metrics = None
+        if skip_judge:
+            print("  judge stage skipped (--skip-judge)")
+        else:
+            try:
+                judged_citations, judged_facts = apply_judge(
+                    raw_citations, raw_facts, documents, judge_model=judge_model
+                )
+                post_report = {"report": build_report(judged_citations, judged_facts, judicial_memo=None).model_dump()}
+                post_metrics = evaluate_pipeline(post_report)
+                post_file = EVAL_RUNS_DIR / f"{ts}_{label}_run{k}_post.json"
+                with open(post_file, "w") as f:
+                    json.dump(post_report, f, indent=2)
+                print(f"  post-judge recall: {fmt_pct(post_metrics['recall'])} ({len(post_metrics['matched_flaws'])}/{len(KNOWN_FLAWS)})")
+                post_recalls.append(post_metrics["recall"])
+            except Exception as e:
+                print(f"  run {k}: judge stage FAILED, pre-judge result kept: {e}")
+
+        record = {
+            "timestamp": ts,
+            "commit": git_commit_hash(),
+            "generator_model": label,
+            "judge_model": judge_label,
+            "run_index": k,
+            "pre_judge_recall": pre_metrics["recall"],
+            "post_judge_recall": post_metrics["recall"] if post_metrics else None,
+            "pre_judge_matched_flaws": pre_metrics["matched_flaws"],
+            "post_judge_matched_flaws": post_metrics["matched_flaws"] if post_metrics else None,
+            "judge_stage_failed": post_metrics is None,
+        }
+        append_metrics_log(record)
+        run_records.append(record)
+
+        if k < n and sleep_seconds > 0:
+            print(f"  sleeping {sleep_seconds}s before next run (rate-limit pacing)...")
+            time.sleep(sleep_seconds)
+
+    if not pre_recalls:
+        print("\nAll runs failed — no metrics to summarize.")
+        return
+
+    def mean_std(values):
+        if not values:
+            return None, None
+        mean = statistics.mean(values)
+        std = statistics.pstdev(values) if len(values) > 1 else 0.0
+        return mean, std
+
+    pre_mean, pre_std = mean_std(pre_recalls)
+    post_mean, post_std = mean_std(post_recalls)
+
+    print("\n" + "=" * 80)
+    print(f"SUMMARY — {len(pre_recalls)}/{n} generator run(s), {len(post_recalls)}/{n} judge run(s) succeeded; generator={label}, judge={judge_label}")
+    print("=" * 80)
+    print(f"Pre-judge recall:  mean={pre_mean:.1%} std={pre_std:.1%}  (values: {[f'{v:.1%}' for v in pre_recalls]})")
+    if post_recalls:
+        print(f"Post-judge recall: mean={post_mean:.1%} std={post_std:.1%}  (values: {[f'{v:.1%}' for v in post_recalls]})")
+    else:
+        print("Post-judge recall: N/A (judge stage failed on every run — see per-run errors above)")
+    print("=" * 80 + "\n")
+
+    summary = {
+        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
+        "commit": git_commit_hash(),
+        "generator_model": label,
+        "judge_model": judge_label,
+        "n_requested": n,
+        "n_successful_generator": len(pre_recalls),
+        "n_successful_judge": len(post_recalls),
+        "pre_judge_recall_mean": pre_mean,
+        "pre_judge_recall_std": pre_std,
+        "post_judge_recall_mean": post_mean,
+        "post_judge_recall_std": post_std,
+        "runs": run_records,
+    }
+    summary_file = EVAL_RUNS_DIR / f"summary_{label}_{summary['timestamp']}.json"
+    with open(summary_file, "w") as f:
+        json.dump(summary, f, indent=2)
+    print(f"Saved summary to {summary_file.name}")
+
+
+def run_judge_replay(
+    glob_pattern: str,
+    judge_model: str | None,
+    sleep_seconds: float,
+    temperature: float | None = None,
+):
+    """Applies the judge to already-saved pre-judge reports (from a prior
+    --repeat run) instead of regenerating them, so the same set of generator
+    outputs can be judged by multiple judge models/configurations without
+    spending any additional generator API calls — only judge calls."""
+    matches = sorted(Path(__file__).parent.glob(glob_pattern) if not os.path.isabs(glob_pattern) else globmod.glob(glob_pattern))
+    if not matches:
+        matches = sorted(Path(p) for p in globmod.glob(str(Path(__file__).parent / glob_pattern)))
+    if not matches:
+        print(f"No files matched pattern: {glob_pattern}")
+        sys.exit(1)
+
+    if temperature is not None:
+        os.environ["LLM_TEMPERATURE_OVERRIDE"] = str(temperature)
+    else:
+        os.environ.pop("LLM_TEMPERATURE_OVERRIDE", None)
+
+    judge_label = judge_model or "default-larger-model"
+    if temperature is not None:
+        judge_label = f"{judge_label}_temp{temperature}"
+    print(
+        f"Replaying judge ({judge_label}) over {len(matches)} saved pre-judge file(s), "
+        f"temperature={temperature if temperature is not None else 'default (0)'}, "
+        "no generator calls will be made"
+    )
+    documents = load_documents()
+
+    post_recalls = []
+    for i, pre_file in enumerate(matches, start=1):
+        print(f"\n--- replay {i}/{len(matches)}: {pre_file.name} ---")
+        with open(pre_file) as f:
+            pre_report = json.load(f)
+
+        citation_findings = [CitationFinding(**c) for c in pre_report["report"]["citations"]]
+        fact_findings = [FactFinding(**fct) for fct in pre_report["report"]["facts"]]
+
+        try:
+            judged_citations, judged_facts = apply_judge(
+                citation_findings, fact_findings, documents, judge_model=judge_model
+            )
+            post_report = {"report": build_report(judged_citations, judged_facts, judicial_memo=None).model_dump()}
+            post_metrics = evaluate_pipeline(post_report)
+        except Exception as e:
+            print(f"  judge replay FAILED: {e}")
+            if i < len(matches) and sleep_seconds > 0:
+                time.sleep(sleep_seconds)
+            continue
+
+        post_file = pre_file.parent / f"{pre_file.stem.replace('_pre', '')}_post_judgereplay_{judge_label}.json"
+        with open(post_file, "w") as f:
+            json.dump(post_report, f, indent=2)
+
+        print(f"  post-judge recall: {fmt_pct(post_metrics['recall'])} ({len(post_metrics['matched_flaws'])}/{len(KNOWN_FLAWS)})")
+        post_recalls.append(post_metrics["recall"])
+
+        append_metrics_log({
+            "timestamp": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
+            "commit": git_commit_hash(),
+            "judge_replay_source": pre_file.name,
+            "judge_model": judge_label,
+            "post_judge_recall": post_metrics["recall"],
+            "post_judge_matched_flaws": post_metrics["matched_flaws"],
+        })
+
+        if i < len(matches) and sleep_seconds > 0:
+            print(f"  sleeping {sleep_seconds}s before next replay (rate-limit pacing)...")
+            time.sleep(sleep_seconds)
+
+    if post_recalls:
+        mean = statistics.mean(post_recalls)
+        std = statistics.pstdev(post_recalls) if len(post_recalls) > 1 else 0.0
+        print("\n" + "=" * 80)
+        print(f"JUDGE REPLAY SUMMARY — judge={judge_label}, {len(post_recalls)}/{len(matches)} succeeded")
+        print(f"Post-judge recall: mean={mean:.1%} std={std:.1%}  (values: {[f'{v:.1%}' for v in post_recalls]})")
+        print("=" * 80 + "\n")
+
+
 def main():
-    import json
     import argparse
 
     parser = argparse.ArgumentParser(description="VeriBrief Evaluation Harness")
@@ -247,7 +605,81 @@ def main():
         action="store_true",
         help="Use cached pipeline output (mock_api_call.json) instead of calling API",
     )
+    parser.add_argument(
+        "--protocol-version",
+        type=int,
+        choices=[1, 2, 3],
+        default=None,
+        help=(
+            "Replay a historical gabarito version (1, 2, or 3) against a "
+            "cached report instead of running the current (v3) evaluation. "
+            "No API calls made. See PROTOCOL_VERSIONS for what each version "
+            "represents."
+        ),
+    )
+    parser.add_argument(
+        "--repeat",
+        type=int,
+        default=None,
+        help="Run the live pipeline N times (real API calls) and report mean/std recall across runs.",
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default=None,
+        help="Override the generator model for --repeat runs (e.g. gemini-2.5-flash, gemini-2.5-pro).",
+    )
+    parser.add_argument(
+        "--judge-model",
+        type=str,
+        default=None,
+        help="Override the judge model for --repeat runs (e.g. same as --model, to run the same-family-judge condition).",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=None,
+        help="Override generator temperature for --repeat runs (default: whatever each agent already uses, 0 for extraction/verification, 0.1 for fact-checking).",
+    )
+    parser.add_argument(
+        "--judge-replay",
+        type=str,
+        default=None,
+        help=(
+            "Instead of running the generator, apply the judge to already-saved "
+            "*_pre.json files matching this glob (relative to backend/), without "
+            "spending any generator API calls. Requires --judge-model or uses the "
+            "default judge model."
+        ),
+    )
+    parser.add_argument(
+        "--sleep",
+        type=float,
+        default=15.0,
+        help="Seconds to sleep between repeated full-pipeline runs, to avoid bursting rate limits (default: 15).",
+    )
+    parser.add_argument(
+        "--skip-judge",
+        action="store_true",
+        help="Skip the judge stage entirely for --repeat runs (e.g. when the judge model's daily quota is already exhausted, to avoid wasting time on doomed retries).",
+    )
     args = parser.parse_args()
+
+    if args.judge_replay is not None:
+        run_judge_replay(args.judge_replay, args.judge_model, args.sleep, temperature=args.temperature)
+        return
+
+    if args.repeat is not None:
+        run_repeated(
+            args.repeat, args.model, args.judge_model, args.sleep,
+            skip_judge=args.skip_judge, temperature=args.temperature,
+        )
+        return
+
+    if args.protocol_version is not None:
+        cache_file = Path(__file__).parent / "mock_api_call.json"
+        run_protocol_version(args.protocol_version, cache_file if args.cache else None)
+        return
 
     print("\n" + "=" * 80)
     print("VERIBRIEF EVALUATION HARNESS")
@@ -305,9 +737,6 @@ def main():
 
             traceback.print_exc()
             sys.exit(1)
-
-    def fmt_pct(value):
-        return f"{value:.1%}" if value is not None else "N/A"
 
     print("Evaluating results...\n")
     metrics = evaluate_pipeline(report)
