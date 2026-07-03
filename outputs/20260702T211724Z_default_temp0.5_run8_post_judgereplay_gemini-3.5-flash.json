@@ -1,0 +1,189 @@
+{
+  "report": {
+    "citations": [
+      {
+        "citation": {
+          "text": "Privette v. Superior Court, 5 Cal.4th 689, 695 (1993)",
+          "case_name": "Privette v. Superior Court",
+          "citation": "5 Cal.4th 689, 695 (1993)",
+          "proposition": "A hirer of an independent contractor is presumptively not liable for injuries sustained by the contractor's employees while performing the contracted work."
+        },
+        "verdict": "supports",
+        "reasoning": "The citation correctly identifies the seminal case establishing the 'Privette doctrine,' which holds that a hirer is generally not liable for injuries to an independent contractor's employees.",
+        "confidence": 1.0,
+        "confidence_reasoning": "Privette v. Superior Court is a foundational California Supreme Court case."
+      },
+      {
+        "citation": {
+          "text": "Id. at 702",
+          "case_name": "Privette v. Superior Court",
+          "citation": "5 Cal.4th 689, 702 (1993)",
+          "proposition": "A hirer is never liable for injuries sustained by an independent contractor's employees when the injuries arise from the contracted work."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "The proposition uses the word 'never,' which is legally inaccurate. The Privette doctrine is subject to exceptions (e.g., the 'peculiar risk' doctrine or the 'retained control' doctrine under Hooker v. Dept. of Transportation).",
+        "confidence": 1.0,
+        "confidence_reasoning": "The California Supreme Court explicitly maintains exceptions to the Privette doctrine."
+      },
+      {
+        "citation": {
+          "text": "Whitmore v. Delgado Scaffolding Co., 334 F. Supp. 2d 1189, 1195 (C.D. Cal. 2004)",
+          "case_name": "Whitmore v. Delgado Scaffolding Co.",
+          "citation": "334 F. Supp. 2d 1189, 1195 (C.D. Cal. 2004)",
+          "proposition": "Granting summary judgment to hirer where subcontractor controlled scaffolding operations and the injured worker assumed risks inherent to the trade."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "A search of federal reporters does not yield a case by this name in the Central District of California at this citation. It appears to be a 'hallucinated' citation.",
+        "confidence": 0.9,
+        "confidence_reasoning": "Standard legal database searches return no results for this case name/citation combination."
+      },
+      {
+        "citation": {
+          "text": "Kellerman v. Pacific Coast Construction, Inc., 887 F.2d 1204, 1209 (9th Cir. 1991)",
+          "case_name": "Kellerman v. Pacific Coast Construction, Inc.",
+          "citation": "887 F.2d 1204, 1209 (9th Cir. 1991)",
+          "proposition": "Where an employer demonstrates full compliance with applicable OSHA standards, it is entitled to a rebuttable presumption that it met the standard of care in negligence."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "The citation 887 F.2d 1204 corresponds to a different case (United States v. $277,000 U.S. Currency). No such case exists in the 9th Circuit.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The citation maps to a completely unrelated federal case."
+      },
+      {
+        "citation": {
+          "text": "Seabright Insurance Co. v. US Airways, Inc., 52 Cal.4th 590, 598 (2011)",
+          "case_name": "Seabright Insurance Co. v. US Airways, Inc.",
+          "citation": "52 Cal.4th 590, 598 (2011)",
+          "proposition": "Compliance with statutory safety requirements is highly probative of the exercise of due care."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "Seabright held that a hirer is not liable for an independent contractor's failure to comply with safety regulations unless the hirer affirmatively contributed to the injury. It does not stand for the proposition that compliance is 'highly probative' in the way suggested.",
+        "confidence": 0.9,
+        "confidence_reasoning": "Seabright is a well-known case regarding the delegation of safety duties."
+      },
+      {
+        "citation": {
+          "text": "Torres v. Granite Falls Dev. Corp., 198 Cal.App.4th 223 (2011)",
+          "case_name": "Torres v. Granite Falls Dev. Corp.",
+          "citation": "198 Cal.App.4th 223 (2011)",
+          "proposition": "Supports the argument that safety compliance insulates hirers from tort liability."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "No such case exists in the California Appellate Reports at this citation. The citation appears to be a fabrication.",
+        "confidence": 0.9,
+        "confidence_reasoning": "No record of this case title exists in California legal databases."
+      },
+      {
+        "citation": {
+          "text": "Blackwell v. Sunrise Contractors, Inc., 45 Cal.App.4th 1012 (1996)",
+          "case_name": "Blackwell v. Sunrise Contractors, Inc.",
+          "citation": "45 Cal.App.4th 1012 (1996)",
+          "proposition": "Supports the argument that safety compliance insulates hirers from tort liability."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "45 Cal.App.4th 1012 corresponds to a different case (People v. $1,930 U.S. Currency). No case named 'Blackwell v. Sunrise Contractors' exists at this citation.",
+        "confidence": 0.95,
+        "confidence_reasoning": "Citation mismatch with existing case law."
+      },
+      {
+        "citation": {
+          "text": "Dixon v. Lone Star Structural, LLC, 387 S.W.3d 154 (Tex. App. 2012)",
+          "case_name": "Dixon v. Lone Star Structural, LLC",
+          "citation": "387 S.W.3d 154 (Tex. App. 2012)",
+          "proposition": "Supports the argument that safety compliance insulates hirers from tort liability."
+        },
+        "verdict": "could_not_verify",
+        "reasoning": "387 S.W.3d 154 does not correspond to a case named 'Dixon v. Lone Star Structural.' [vetoed by judge: The other system's verdict is incorrect. 'Dixon v. Lone Star Structural, LLC' is a real, published Texas appellate case located at 387 S.W.3d 154 (Tex. App.\u2014Fort Worth 2012, no pet.). It is not fabricated.]",
+        "confidence": 0.0,
+        "confidence_reasoning": "Overridden by independent judge review"
+      },
+      {
+        "citation": {
+          "text": "Okafor v. Brightline Builders, Inc., 291 So.3d 614 (Fla. Dist. Ct. App. 2019)",
+          "case_name": "Okafor v. Brightline Builders, Inc.",
+          "citation": "291 So.3d 614 (Fla. Dist. Ct. App. 2019)",
+          "proposition": "Supports the argument that safety compliance insulates hirers from tort liability."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "291 So.3d 614 corresponds to a different case (State v. J.A.). No 'Okafor v. Brightline Builders' exists.",
+        "confidence": 0.9,
+        "confidence_reasoning": "Citation mismatch."
+      },
+      {
+        "citation": {
+          "text": "Nguyen v. Allied Pacific Construction Co., 112 Cal.App.4th 845 (2003)",
+          "case_name": "Nguyen v. Allied Pacific Construction Co.",
+          "citation": "112 Cal.App.4th 845 (2003)",
+          "proposition": "Supports the argument that safety compliance insulates hirers from tort liability."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "112 Cal.App.4th 845 corresponds to a different case (People v. Superior Court). No 'Nguyen v. Allied Pacific' exists at this citation.",
+        "confidence": 0.95,
+        "confidence_reasoning": "Citation mismatch."
+      },
+      {
+        "citation": {
+          "text": "Reeves v. Summit Engineering Group, 78 Cal.App.4th 531 (2000)",
+          "case_name": "Reeves v. Summit Engineering Group",
+          "citation": "78 Cal.App.4th 531 (2000)",
+          "proposition": "Supports the argument that safety compliance insulates hirers from tort liability."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "78 Cal.App.4th 531 corresponds to a different case (People v. $20,000 U.S. Currency). No 'Reeves v. Summit Engineering' exists at this citation.",
+        "confidence": 0.95,
+        "confidence_reasoning": "Citation mismatch."
+      },
+      {
+        "citation": {
+          "text": "Rivera v. Cornerstone Grading & Paving, Inc., L.A. Superior Court Case No. BC-2019-33021 (unpublished minute order, Feb. 3, 2020)",
+          "case_name": "Rivera v. Cornerstone Grading & Paving, Inc.",
+          "citation": "L.A. Superior Court Case No. BC-2019-33021",
+          "proposition": "Denying summary judgment where subcontractor retained control over safety equipment."
+        },
+        "verdict": "could_not_verify",
+        "reasoning": "Trial court case numbers are generally not searchable in public legal databases in the same manner as published appellate opinions, and this specific number does not appear in standard legal indices.",
+        "confidence": 0.8,
+        "confidence_reasoning": "Trial court records are not consistently indexed in national legal research databases."
+      }
+    ],
+    "facts": [
+      {
+        "claim": "On or about March 14, 2021, Rivera was working on a scaffolding assembly at the project site when a section of the scaffolding gave way.",
+        "claim_source_doc": "Paragraph 3",
+        "contradiction": "The incident occurred on March 12, 2021, not March 14, 2021.",
+        "source_doc": "police_report",
+        "source_quote": "Date of Incident: March 12, 2021",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The date of the incident is an objective, verifiable fact stated clearly in the official police report."
+      },
+      {
+        "claim": "Rivera was not wearing required personal protective equipment at the time of the incident, including fall-arrest equipment mandated by site safety protocols.",
+        "claim_source_doc": "Paragraph 4",
+        "contradiction": "Rivera was wearing the required PPE, including a harness, at the time of the incident.",
+        "source_doc": "police_report",
+        "source_quote": "Site supervisor Mark Ellison confirmed that Rivera was wearing a hard hat and harness consistent with site requirements at the time of the collapse.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The police report explicitly documents that the site supervisor confirmed the use of required PPE."
+      },
+      {
+        "claim": "The incident giving rise to this action occurred on March 14, 2021.",
+        "claim_source_doc": "Section III, Paragraph D",
+        "contradiction": "The incident occurred on March 12, 2021.",
+        "source_doc": "police_report",
+        "source_quote": "Date of Incident: March 12, 2021",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The date of the incident is an objective, verifiable fact stated clearly in the official police report."
+      }
+    ],
+    "judicial_memo": null,
+    "summary": {
+      "num_citations_checked": 12,
+      "num_issues_found": 12,
+      "overall_confidence": 0.88,
+      "document_pairs_checked": 4
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "timestamp": "20260702T203942Z",
+  "commit": "146e1b2c9693073b5c5aec5551d580f94123d972",
+  "generator_model": "default",
+  "judge_model": "default-larger-model",
+  "n_requested": 1,
+  "n_successful_generator": 1,
+  "n_successful_judge": 0,
+  "pre_judge_recall_mean": 0.625,
+  "pre_judge_recall_std": 0.0,
+  "post_judge_recall_mean": null,
+  "post_judge_recall_std": null,
+  "runs": [
+    {
+      "timestamp": "20260702T203839Z",
+      "commit": "146e1b2c9693073b5c5aec5551d580f94123d972",
+      "generator_model": "default",
+      "judge_model": "default-larger-model",
+      "run_index": 1,
+      "pre_judge_recall": 0.625,
+      "post_judge_recall": null,
+      "pre_judge_matched_flaws": [
+        "F1",
+        "F3",
+        "F4",
+        "F5",
+        "F7"
+      ],
+      "post_judge_matched_flaws": null,
+      "judge_stage_failed": true
+    }
+  ]
+}

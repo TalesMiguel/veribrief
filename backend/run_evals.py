@@ -10,7 +10,7 @@ from pathlib import Path
 from main import load_documents, run_verification_agents, apply_judge, build_report
 from models import CitationFinding, FactFinding
 
-EVAL_RUNS_DIR = Path(__file__).parent / "eval_runs"
+EVAL_RUNS_DIR = Path(__file__).parent.parent / "outputs"
 METRICS_LOG = EVAL_RUNS_DIR / "metrics_log.jsonl"
 HISTORICAL_V1_FILE = EVAL_RUNS_DIR / "historical_v1_mock_api_call.json"
 

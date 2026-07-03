@@ -1,0 +1,63 @@
+{
+  "timestamp": "20260702T210036Z",
+  "commit": "146e1b2c9693073b5c5aec5551d580f94123d972",
+  "generator_model": "gemini-2.5-flash-lite",
+  "judge_model": "skipped",
+  "n_requested": 5,
+  "n_successful_generator": 3,
+  "n_successful_judge": 0,
+  "pre_judge_recall_mean": 0.375,
+  "pre_judge_recall_std": 0.0,
+  "post_judge_recall_mean": null,
+  "post_judge_recall_std": null,
+  "runs": [
+    {
+      "timestamp": "20260702T205640Z",
+      "commit": "146e1b2c9693073b5c5aec5551d580f94123d972",
+      "generator_model": "gemini-2.5-flash-lite",
+      "judge_model": "skipped",
+      "run_index": 1,
+      "pre_judge_recall": 0.375,
+      "post_judge_recall": null,
+      "pre_judge_matched_flaws": [
+        "F1",
+        "F4",
+        "F5"
+      ],
+      "post_judge_matched_flaws": null,
+      "judge_stage_failed": true
+    },
+    {
+      "timestamp": "20260702T205719Z",
+      "commit": "146e1b2c9693073b5c5aec5551d580f94123d972",
+      "generator_model": "gemini-2.5-flash-lite",
+      "judge_model": "skipped",
+      "run_index": 2,
+      "pre_judge_recall": 0.375,
+      "post_judge_recall": null,
+      "pre_judge_matched_flaws": [
+        "F1",
+        "F4",
+        "F5"
+      ],
+      "post_judge_matched_flaws": null,
+      "judge_stage_failed": true
+    },
+    {
+      "timestamp": "20260702T205804Z",
+      "commit": "146e1b2c9693073b5c5aec5551d580f94123d972",
+      "generator_model": "gemini-2.5-flash-lite",
+      "judge_model": "skipped",
+      "run_index": 3,
+      "pre_judge_recall": 0.375,
+      "post_judge_recall": null,
+      "pre_judge_matched_flaws": [
+        "F1",
+        "F4",
+        "F5"
+      ],
+      "post_judge_matched_flaws": null,
+      "judge_stage_failed": true
+    }
+  ]
+}

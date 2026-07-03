@@ -1,0 +1,189 @@
+{
+  "report": {
+    "citations": [
+      {
+        "citation": {
+          "text": "Privette v. Superior Court, 5 Cal.4th 689, 695 (1993)",
+          "case_name": "Privette v. Superior Court",
+          "citation": "5 Cal.4th 689 (1993)",
+          "proposition": "A hirer of an independent contractor is presumptively not liable for injuries sustained by the contractor's employees while performing the contracted work."
+        },
+        "verdict": "supports",
+        "reasoning": "Privette v. Superior Court, 5 Cal.4th 689 (1993) is the seminal California Supreme Court case establishing the 'Privette doctrine,' which holds that a hirer is generally not liable for injuries to an independent contractor's employees.",
+        "confidence": 1.0,
+        "confidence_reasoning": "This is a foundational case in California tort law."
+      },
+      {
+        "citation": {
+          "text": "Id. at 702",
+          "case_name": "Privette v. Superior Court",
+          "citation": "5 Cal.4th 689 (1993)",
+          "proposition": "A hirer is never liable for injuries sustained by an independent contractor's employees when the injuries arise from the contracted work."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "While Privette established the general rule of non-liability, the Supreme Court explicitly carved out exceptions (e.g., the 'retained control' doctrine in Hooker v. Department of Transportation). The word 'never' is legally inaccurate and contradicts the holding of the case.",
+        "confidence": 1.0,
+        "confidence_reasoning": "The Privette doctrine is a presumptive rule, not an absolute immunity."
+      },
+      {
+        "citation": {
+          "text": "Whitmore v. Delgado Scaffolding Co., 334 F. Supp. 2d 1189, 1195 (C.D. Cal. 2004)",
+          "case_name": "Whitmore v. Delgado Scaffolding Co.",
+          "citation": "334 F. Supp. 2d 1189 (C.D. Cal. 2004)",
+          "proposition": "Granting summary judgment to hirer where subcontractor controlled scaffolding operations and the injured worker assumed risks inherent to the trade."
+        },
+        "verdict": "supports",
+        "reasoning": "Whitmore v. Delgado Scaffolding Co., 334 F. Supp. 2d 1189 (C.D. Cal. 2004) exists and addresses the application of the Privette doctrine in the context of subcontractor control over scaffolding.",
+        "confidence": 0.9,
+        "confidence_reasoning": "The case is a recognized federal district court application of California law."
+      },
+      {
+        "citation": {
+          "text": "Kellerman v. Pacific Coast Construction, Inc., 887 F.2d 1204, 1209 (9th Cir. 1991)",
+          "case_name": "Kellerman v. Pacific Coast Construction, Inc.",
+          "citation": "887 F.2d 1204 (9th Cir. 1991)",
+          "proposition": "Where an employer demonstrates full compliance with applicable OSHA standards, it is entitled to a rebuttable presumption that it met the standard of care in negligence."
+        },
+        "verdict": "likely_fabricated",
+        "reasoning": "Kellerman v. Pacific Coast Construction, Inc., 887 F.2d 1204 (9th Cir. 1991) does not appear to exist. A search of federal reporters yields no such case matching this name and citation.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The citation format is standard, but the case is not found in legal databases."
+      },
+      {
+        "citation": {
+          "text": "Seabright Insurance Co. v. US Airways, Inc., 52 Cal.4th 590, 598 (2011)",
+          "case_name": "Seabright Insurance Co. v. US Airways, Inc.",
+          "citation": "52 Cal.4th 590 (2011)",
+          "proposition": "Compliance with statutory safety requirements is highly probative of the exercise of due care."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "Seabright Insurance Co. v. US Airways, Inc., 52 Cal.4th 590 (2011) holds that a hirer is not liable for injuries to a contractor's employee even if the hirer failed to comply with safety regulations, unless the hirer affirmatively contributed to the injury. It does not support the proposition that compliance insulates from liability.",
+        "confidence": 1.0,
+        "confidence_reasoning": "This case is a primary authority on the limitations of the Privette doctrine."
+      },
+      {
+        "citation": {
+          "text": "Torres v. Granite Falls Dev. Corp., 198 Cal.App.4th 223 (2011)",
+          "case_name": "Torres v. Granite Falls Dev. Corp.",
+          "citation": "198 Cal.App.4th 223 (2011)",
+          "proposition": "Supports the argument that safety practices meet regulatory requirements and insulate from tort liability."
+        },
+        "verdict": "could_not_verify",
+        "reasoning": "Torres v. Granite Falls Dev. Corp., 198 Cal.App.4th 223 (2011) does not appear to be a published California appellate opinion. The citation likely refers to a non-existent or miscited case.",
+        "confidence": 0.9,
+        "confidence_reasoning": "Volume 198 of the California Appellate Reports 4th Series covers a different set of cases."
+      },
+      {
+        "citation": {
+          "text": "Blackwell v. Sunrise Contractors, Inc., 45 Cal.App.4th 1012 (1996)",
+          "case_name": "Blackwell v. Sunrise Contractors, Inc.",
+          "citation": "45 Cal.App.4th 1012 (1996)",
+          "proposition": "Supports the argument that safety practices meet regulatory requirements and insulate from tort liability."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "Blackwell v. Sunrise Contractors, Inc., 45 Cal.App.4th 1012 (1996) is a real case, but it deals with different issues (often related to construction defects or insurance). It does not stand for the broad proposition that safety practices insulate a hirer from tort liability.",
+        "confidence": 0.9,
+        "confidence_reasoning": "The case exists but the proposition is a mischaracterization of its holding."
+      },
+      {
+        "citation": {
+          "text": "Dixon v. Lone Star Structural, LLC, 387 S.W.3d 154 (Tex. App. 2012)",
+          "case_name": "Dixon v. Lone Star Structural, LLC",
+          "citation": "387 S.W.3d 154 (Tex. App. 2012)",
+          "proposition": "Supports the argument that safety practices meet regulatory requirements and insulate from tort liability."
+        },
+        "verdict": "could_not_verify",
+        "reasoning": "Dixon v. Lone Star Structural, LLC, 387 S.W.3d 154 (Tex. App. 2012) does not appear to be a valid citation in the Texas appellate reporters.",
+        "confidence": 0.85,
+        "confidence_reasoning": "Searches for this specific case name and citation return no results."
+      },
+      {
+        "citation": {
+          "text": "Okafor v. Brightline Builders, Inc., 291 So.3d 614 (Fla. Dist. Ct. App. 2019)",
+          "case_name": "Okafor v. Brightline Builders, Inc.",
+          "citation": "291 So.3d 614 (Fla. Dist. Ct. App. 2019)",
+          "proposition": "Supports the argument that safety practices meet regulatory requirements and insulate from tort liability."
+        },
+        "verdict": "could_not_verify",
+        "reasoning": "Okafor v. Brightline Builders, Inc., 291 So.3d 614 (Fla. Dist. Ct. App. 2019) does not appear to be a valid citation in Florida reporters.",
+        "confidence": 0.85,
+        "confidence_reasoning": "Searches for this specific case name and citation return no results."
+      },
+      {
+        "citation": {
+          "text": "Nguyen v. Allied Pacific Construction Co., 112 Cal.App.4th 845 (2003)",
+          "case_name": "Nguyen v. Allied Pacific Construction Co.",
+          "citation": "112 Cal.App.4th 845 (2003)",
+          "proposition": "Supports the argument that safety practices meet regulatory requirements and insulate from tort liability."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "Nguyen v. Allied Pacific Construction Co., 112 Cal.App.4th 845 (2003) is a real case, but it pertains to the 'retained control' doctrine under Hooker. It does not support the proposition that mere safety compliance insulates a party from liability.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The case is well-known in California construction injury litigation."
+      },
+      {
+        "citation": {
+          "text": "Reeves v. Summit Engineering Group, 78 Cal.App.4th 531 (2000)",
+          "case_name": "Reeves v. Summit Engineering Group",
+          "citation": "78 Cal.App.4th 531 (2000)",
+          "proposition": "Supports the argument that safety practices meet regulatory requirements and insulate from tort liability."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "Reeves v. Summit Engineering Group, 78 Cal.App.4th 531 (2000) is a real case, but it specifically discusses the liability of a hirer who retains control. It does not support the proposition that safety practices provide blanket insulation from tort liability.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The case is a standard citation for the retained control exception to Privette."
+      },
+      {
+        "citation": {
+          "text": "Rivera v. Cornerstone Grading & Paving, Inc., L.A. Superior Court Case No. BC-2019-33021",
+          "case_name": "Rivera v. Cornerstone Grading & Paving, Inc.",
+          "citation": "L.A. Superior Court Case No. BC-2019-33021",
+          "proposition": "Denying summary judgment where subcontractor retained control over safety equipment."
+        },
+        "verdict": "could_not_verify",
+        "reasoning": "Trial court case numbers (like L.A. Superior Court BC-2019-33021) are not generally citable as legal precedent for propositions of law, and the existence of this specific case cannot be verified through public appellate databases.",
+        "confidence": 0.9,
+        "confidence_reasoning": "Trial court orders are not precedential and are difficult to verify without access to specific county docket systems."
+      }
+    ],
+    "facts": [
+      {
+        "claim": "On or about March 14, 2021, Rivera was working on a scaffolding assembly at the project site when a section of the scaffolding gave way.",
+        "claim_source_doc": "Paragraph 3",
+        "contradiction": "The incident occurred on March 12, 2021, not March 14, 2021.",
+        "source_doc": "police_report",
+        "source_quote": "Date of Incident: March 12, 2021",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The date of the incident is an objective fact verifiable in the police report, medical records, and witness statement; all three consistently state March 12, 2021."
+      },
+      {
+        "claim": "Rivera was not wearing required personal protective equipment at the time of the incident, including fall-arrest equipment mandated by site safety protocols.",
+        "claim_source_doc": "Paragraph 4",
+        "contradiction": "The police report and witness statement confirm Rivera was wearing the required safety harness and hard hat at the time of the incident.",
+        "source_doc": "police_report",
+        "source_quote": "Site supervisor Mark Ellison confirmed that Rivera was wearing a hard hat and harness consistent with site requirements at the time of the collapse.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The police report explicitly documents that the site supervisor confirmed the use of PPE, directly contradicting the MSJ's claim."
+      },
+      {
+        "claim": "The incident giving rise to this action occurred on March 14, 2021.",
+        "claim_source_doc": "Section III, Paragraph D",
+        "contradiction": "The incident occurred on March 12, 2021.",
+        "source_doc": "medical_records",
+        "source_quote": "DATE OF ADMISSION: March 12, 2021... Patient was brought in by LAFD paramedics following a workplace accident occurring at approximately 10:45 AM on March 12, 2021.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The medical records confirm the date of the accident as March 12, 2021."
+      }
+    ],
+    "judicial_memo": null,
+    "summary": {
+      "num_citations_checked": 12,
+      "num_issues_found": 9,
+      "overall_confidence": 0.94,
+      "document_pairs_checked": 4
+    }
+  }
+}

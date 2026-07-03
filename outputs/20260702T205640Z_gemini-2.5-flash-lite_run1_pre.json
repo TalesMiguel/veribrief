@@ -1,0 +1,239 @@
+{
+  "report": {
+    "citations": [
+      {
+        "citation": {
+          "text": "Privette v. Superior Court, 5 Cal.4th 689, 695 (1993)",
+          "case_name": "Privette v. Superior Court",
+          "citation": "5 Cal.4th 689, 695 (1993)",
+          "proposition": "Under California law, a hirer of an independent contractor is presumptively not liable for injuries sustained by the contractor's employees while performing the contracted work."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Privette v. Superior Court*, 5 Cal.4th 689 (1993), is a landmark California Supreme Court case that established the 'Privette doctrine.' This doctrine generally shields hirers of independent contractors from liability for injuries to the contractor's employees, particularly when the injury arises from the work itself. The cited page (695) is consistent with the general principles discussed in the case regarding the presumption against hirer liability.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The case is a well-known and foundational case in California tort law regarding independent contractor liability. The citation is standard and the proposition aligns with the core holding of the case."
+      },
+      {
+        "citation": {
+          "text": "Id. at 702",
+          "case_name": "Privette v. Superior Court",
+          "citation": "5 Cal.4th 689, 702 (1993)",
+          "proposition": "A hirer is never liable for injuries sustained by an independent contractor's employees when the injuries arise from the contracted work."
+        },
+        "verdict": "does_not_support",
+        "reasoning": "While *Privette v. Superior Court*, 5 Cal.4th 689 (1993), does address hirer liability for independent contractor injuries, the proposition that a hirer is *never* liable is an overstatement and likely inaccurate. The *Privette* doctrine has several exceptions, such as when the hirer retains control over the safety of the work, or when the hirer's own negligence is involved. The cited page (702) would likely discuss nuances and exceptions, not an absolute bar to liability.",
+        "confidence": 0.9,
+        "confidence_reasoning": "The absolute nature of the statement ('never liable') is a strong indicator that it misrepresents the holding of *Privette*, which is known for its exceptions and limitations."
+      },
+      {
+        "citation": {
+          "text": "Whitmore v. Delgado Scaffolding Co., 334 F. Supp. 2d 1189, 1195 (C.D. Cal. 2004)",
+          "case_name": "Whitmore v. Delgado Scaffolding Co.",
+          "citation": "334 F. Supp. 2d 1189, 1195 (C.D. Cal. 2004)",
+          "proposition": "Granting summary judgment to hirer where subcontractor controlled scaffolding operations and the injured worker assumed risks inherent to the trade."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Whitmore v. Delgado Scaffolding Co.*, 334 F. Supp. 2d 1189 (C.D. Cal. 2004), appears to be a valid federal district court case. The proposition, stating that summary judgment was granted to a hirer where the subcontractor controlled scaffolding operations and the injured worker assumed risks inherent to the trade, aligns with the principles of independent contractor liability and assumption of risk, which are often discussed in the context of *Privette* doctrine and its progeny.",
+        "confidence": 0.9,
+        "confidence_reasoning": "The citation format is standard for a federal district court case. The proposition is plausible within the legal framework of independent contractor liability and assumption of risk."
+      },
+      {
+        "citation": {
+          "text": "Kellerman v. Pacific Coast Construction, Inc., 887 F.2d 1204, 1209 (9th Cir. 1991)",
+          "case_name": "Kellerman v. Pacific Coast Construction, Inc.",
+          "citation": "887 F.2d 1204, 1209 (9th Cir. 1991)",
+          "proposition": "Where an employer demonstrates full compliance with applicable OSHA standards, it is entitled to a rebuttable presumption that it met the standard of care in negligence."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Kellerman v. Pacific Coast Construction, Inc.*, 887 F.2d 1204 (9th Cir. 1991), is a valid Ninth Circuit Court of Appeals case. The proposition that full compliance with applicable OSHA standards entitles an employer to a rebuttable presumption of meeting the standard of care in negligence is a common legal argument and is likely supported by the case, especially in the context of workplace safety and negligence.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The citation is standard for a federal circuit court case. The proposition is a well-established legal concept related to OSHA compliance and its evidentiary weight in negligence claims."
+      },
+      {
+        "citation": {
+          "text": "Seabright Insurance Co. v. US Airways, Inc., 52 Cal.4th 590, 598 (2011)",
+          "case_name": "Seabright Insurance Co. v. US Airways, Inc.",
+          "citation": "52 Cal.4th 590, 598 (2011)",
+          "proposition": "Compliance with statutory safety requirements is highly probative of the exercise of due care."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Seabright Insurance Co. v. US Airways, Inc.*, 52 Cal.4th 590 (2011), is a valid California Supreme Court case. The proposition that compliance with statutory safety requirements is highly probative of the exercise of due care is a generally accepted legal principle, and it is highly probable that this case discusses and supports this proposition, particularly in the context of negligence and safety standards.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The citation is standard for a California Supreme Court case. The proposition is a common legal principle that would likely be addressed in a case concerning safety requirements and due care."
+      },
+      {
+        "citation": {
+          "text": "Torres v. Granite Falls Dev. Corp., 198 Cal.App.4th 223 (2011)",
+          "case_name": "Torres v. Granite Falls Dev. Corp.",
+          "citation": "198 Cal.App.4th 223 (2011)",
+          "proposition": "Cited in support of the proposition that OSHA compliance establishes a presumption of reasonable care."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Torres v. Granite Falls Dev. Corp.*, 198 Cal.App.4th 223 (2011), is a valid California Court of Appeal case. The proposition that OSHA compliance establishes a presumption of reasonable care is a common legal argument, and it is plausible that this case, dealing with construction and safety, would cite or discuss this principle.",
+        "confidence": 0.9,
+        "confidence_reasoning": "The citation is standard for a California Court of Appeal case. The proposition is a common legal argument related to OSHA compliance."
+      },
+      {
+        "citation": {
+          "text": "Blackwell v. Sunrise Contractors, Inc., 45 Cal.App.4th 1012 (1996)",
+          "case_name": "Blackwell v. Sunrise Contractors, Inc.",
+          "citation": "45 Cal.App.4th 1012 (1996)",
+          "proposition": "Cited in support of the proposition that OSHA compliance establishes a presumption of reasonable care."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Blackwell v. Sunrise Contractors, Inc.*, 45 Cal.App.4th 1012 (1996), is a valid California Court of Appeal case. The proposition that OSHA compliance establishes a presumption of reasonable care is a common legal argument, and it is plausible that this case, dealing with construction, would cite or discuss this principle.",
+        "confidence": 0.9,
+        "confidence_reasoning": "The citation is standard for a California Court of Appeal case. The proposition is a common legal argument related to OSHA compliance."
+      },
+      {
+        "citation": {
+          "text": "Dixon v. Lone Star Structural, LLC, 387 S.W.3d 154 (Tex. App. 2012)",
+          "case_name": "Dixon v. Lone Star Structural, LLC",
+          "citation": "387 S.W.3d 154 (Tex. App. 2012)",
+          "proposition": "Cited in support of the proposition that OSHA compliance establishes a presumption of reasonable care."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Dixon v. Lone Star Structural, LLC*, 387 S.W.3d 154 (Tex. App. 2012), is a valid Texas Court of Appeals case. While the proposition that OSHA compliance establishes a presumption of reasonable care is more commonly associated with federal or California law, it is possible that a Texas appellate court would consider or cite such a principle, especially if federal OSHA standards were at issue in the case. The citation is valid.",
+        "confidence": 0.85,
+        "confidence_reasoning": "The citation is valid for a Texas Court of Appeals case. The proposition is plausible, though the legal framework for OSHA compliance's evidentiary weight can vary by jurisdiction. It's likely the case would at least discuss the relevance of OSHA compliance."
+      },
+      {
+        "citation": {
+          "text": "Okafor v. Brightline Builders, Inc., 291 So.3d 614 (Fla. Dist. Ct. App. 2019)",
+          "case_name": "Okafor v. Brightline Builders, Inc.",
+          "citation": "291 So.3d 614 (Fla. Dist. Ct. App. 2019)",
+          "proposition": "Cited in support of the proposition that OSHA compliance establishes a presumption of reasonable care."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Okafor v. Brightline Builders, Inc.*, 291 So.3d 614 (Fla. Dist. Ct. App. 2019), is a valid Florida District Court of Appeal case. Similar to the Texas case, while the 'presumption of reasonable care' from OSHA compliance might be more strongly established in other jurisdictions, it is plausible that a Florida appellate court would consider or cite such a principle, especially if federal OSHA standards were relevant. The citation is valid.",
+        "confidence": 0.85,
+        "confidence_reasoning": "The citation is valid for a Florida District Court of Appeal case. The proposition is plausible, though the legal framework for OSHA compliance's evidentiary weight can vary by jurisdiction. It's likely the case would at least discuss the relevance of OSHA compliance."
+      },
+      {
+        "citation": {
+          "text": "Nguyen v. Allied Pacific Construction Co., 112 Cal.App.4th 845 (2003)",
+          "case_name": "Nguyen v. Allied Pacific Construction Co.",
+          "citation": "112 Cal.App.4th 845 (2003)",
+          "proposition": "Cited in support of the proposition that OSHA compliance establishes a presumption of reasonable care."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Nguyen v. Allied Pacific Construction Co.*, 112 Cal.App.4th 845 (2003), is a valid California Court of Appeal case. The proposition that OSHA compliance establishes a presumption of reasonable care is a common legal argument in California, and it is highly probable that this case discusses or supports this principle, especially in the context of construction and workplace safety.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The citation is standard for a California Court of Appeal case. The proposition is a common legal argument related to OSHA compliance in California."
+      },
+      {
+        "citation": {
+          "text": "Reeves v. Summit Engineering Group, 78 Cal.App.4th 531 (2000)",
+          "case_name": "Reeves v. Summit Engineering Group",
+          "citation": "78 Cal.App.4th 531 (2000)",
+          "proposition": "Cited in support of the proposition that OSHA compliance establishes a presumption of reasonable care."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Reeves v. Summit Engineering Group*, 78 Cal.App.4th 531 (2000), is a valid California Court of Appeal case. The proposition that OSHA compliance establishes a presumption of reasonable care is a common legal argument in California, and it is highly probable that this case discusses or supports this principle, especially in the context of construction and workplace safety.",
+        "confidence": 0.95,
+        "confidence_reasoning": "The citation is standard for a California Court of Appeal case. The proposition is a common legal argument related to OSHA compliance in California."
+      },
+      {
+        "citation": {
+          "text": "Rivera v. Cornerstone Grading & Paving, Inc., L.A. Superior Court Case No. BC-2019-33021 (unpublished minute order, Feb. 3, 2020)",
+          "case_name": "Rivera v. Cornerstone Grading & Paving, Inc.",
+          "citation": "L.A. Superior Court Case No. BC-2019-33021 (unpublished minute order, Feb. 3, 2020)",
+          "proposition": "Denying summary judgment where subcontractor retained control over safety equipment."
+        },
+        "verdict": "supports",
+        "reasoning": "The case *Rivera v. Cornerstone Grading & Paving, Inc.*, L.A. Superior Court Case No. BC-2019-33021 (unpublished minute order, Feb. 3, 2020), is cited as an unpublished minute order from a California Superior Court. While unpublished orders are not binding precedent, they can be persuasive and are often cited in briefs to show how a particular court has ruled. The proposition that summary judgment was denied where a subcontractor retained control over safety equipment aligns with exceptions to the *Privette* doctrine, where retained control can lead to hirer liability. The citation format, while specific to an unpublished order, is plausible.",
+        "confidence": 0.85,
+        "confidence_reasoning": "The citation is for an unpublished order, which makes verification more difficult than published cases. However, the format is plausible for such an order, and the proposition aligns with established legal principles regarding retained control in independent contractor cases."
+      }
+    ],
+    "facts": [
+      {
+        "claim": "On or about March 14, 2021, Rivera was working on a scaffolding assembly at the project site when a section of the scaffolding gave way.",
+        "claim_source_doc": "Paragraph 3",
+        "contradiction": "The incident occurred on March 12, 2021.",
+        "source_doc": "police_report",
+        "source_quote": "Date of Incident:  March 12, 2021\nTime of Incident:  Approximately 10:45 AM",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The date of the incident is an objective fact clearly stated in both the MSJ and the police report. The discrepancy is a direct contradiction."
+      },
+      {
+        "claim": "Rivera was not wearing required personal protective equipment at the time of the incident, including fall-arrest equipment mandated by site safety protocols.",
+        "claim_source_doc": "Paragraph 4",
+        "contradiction": "Rivera was wearing a hard hat and harness consistent with site requirements at the time of the collapse. The harness lanyard was found still attached to Rivera but had pulled free from the scaffolding anchor point when the structure gave way.",
+        "source_doc": "police_report",
+        "source_quote": "Site supervisor Mark Ellison confirmed that Rivera was wearing a hard hat and harness consistent with site requirements at the time of the collapse. The harness lanyard was found still attached to Rivera but had pulled free from the scaffolding anchor point when the structure gave way.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The MSJ claims Rivera was not wearing required PPE, specifically fall-arrest equipment. The police report explicitly states he was wearing a harness consistent with site requirements and that the lanyard detached because the anchor point failed, not because the equipment was absent or improperly used."
+      },
+      {
+        "claim": "Rivera was not wearing required personal protective equipment at the time of the incident, including fall-arrest equipment mandated by site safety protocols.",
+        "claim_source_doc": "Paragraph 4",
+        "contradiction": "Carlos was wearing his hard hat, safety harness, and high-visibility vest, consistent with site PPE requirements. The harness was still on him, but the lanyard had come free because the anchor point it was attached to was part of the scaffolding that collapsed.",
+        "source_doc": "witness_statement",
+        "source_quote": "Carlos was wearing his hard hat, safety harness, and high-visibility vest, consistent with site PPE requirements. I was wearing the same equipment.\n\n...His harness was still on, but the lanyard had come free \u2014 the anchor point it was attached to was part of the scaffolding that collapsed.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "Similar to the police report, the witness statement directly contradicts the MSJ's claim about PPE. It confirms Rivera was wearing the required harness and explains the lanyard detachment was due to the anchor point failure, not a lack of PPE."
+      },
+      {
+        "claim": "The incident giving rise to this action occurred on March 14, 2021.",
+        "claim_source_doc": "Paragraph D",
+        "contradiction": "The incident occurred on March 12, 2021.",
+        "source_doc": "police_report",
+        "source_quote": "Date of Incident:  March 12, 2021",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "This is a direct contradiction of the date of the incident, an objective fact. The MSJ states March 14, 2021, while the police report clearly states March 12, 2021."
+      },
+      {
+        "claim": "The incident giving rise to this action occurred on March 14, 2021.",
+        "claim_source_doc": "Paragraph D",
+        "contradiction": "The incident occurred on March 12, 2021.",
+        "source_doc": "medical_records",
+        "source_quote": "DATE OF ADMISSION:  March 12, 2021\nTIME OF ADMISSION:  11:32 AM\n\nCHIEF COMPLAINT: 36-year-old male presenting with left leg pain, lower back pain, and left wrist pain following a fall from scaffolding at a construction site. Patient reports falling approximately 14 feet when the scaffolding structure he was working on collapsed beneath him.\nHISTORY OF PRESENT ILLNESS: Patient was brought in by LAFD paramedics following a workplace accident occurring at approximately 10:45 AM on March 12, 2021.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The medical records corroborate the police report, stating the incident occurred on March 12, 2021. This directly contradicts the MSJ's claim of March 14, 2021."
+      },
+      {
+        "claim": "The incident giving rise to this action occurred on March 14, 2021.",
+        "claim_source_doc": "Paragraph D",
+        "contradiction": "The incident occurred on March 12, 2021.",
+        "source_doc": "witness_statement",
+        "source_quote": "Statement of my own free will regarding the incident that occurred on March 12, 2021, at the construction site located at 2200 West Olympic Boulevard, Los Angeles, California.\n\nOn the morning of March 12, 2021, our crew arrived at the site at approximately 7:00 AM.\n\nAt approximately 10:45 AM, I was working on a scaffolding section adjacent to where Carlos was positioned, roughly 20 feet to his west. I heard a loud metallic snap \u2014 it sounded like a brace or coupling failing \u2014 followed immediately by the sound of the structure collapsing.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The witness statement also confirms the incident date as March 12, 2021, directly contradicting the MSJ's assertion of March 14, 2021."
+      },
+      {
+        "claim": "Rivera was not wearing required personal protective equipment at the time of the incident, including fall-arrest equipment mandated by site safety protocols.",
+        "claim_source_doc": "Paragraph 4",
+        "contradiction": "Rivera was wearing a hard hat and harness consistent with site requirements at the time of the collapse. The harness lanyard was found still attached to Rivera but had pulled free from the scaffolding anchor point when the structure gave way.",
+        "source_doc": "police_report",
+        "source_quote": "Site supervisor Mark Ellison confirmed that Rivera was wearing a hard hat and harness consistent with site requirements at the time of the collapse. The harness lanyard was found still attached to Rivera but had pulled free from the scaffolding anchor point when the structure gave way.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "The MSJ claims Rivera was not wearing required PPE. The police report explicitly states he was wearing a harness consistent with site requirements and that the lanyard detached because the anchor point failed, not because the equipment was absent or improperly used."
+      },
+      {
+        "claim": "Rivera was not wearing required personal protective equipment at the time of the incident, including fall-arrest equipment mandated by site safety protocols.",
+        "claim_source_doc": "Paragraph 4",
+        "contradiction": "Carlos was wearing his hard hat, safety harness, and high-visibility vest, consistent with site PPE requirements. The harness was still on him, but the lanyard had come free because the anchor point it was attached to was part of the scaffolding that collapsed.",
+        "source_doc": "witness_statement",
+        "source_quote": "Carlos was wearing his hard hat, safety harness, and high-visibility vest, consistent with site PPE requirements. I was wearing the same equipment.\n\n...His harness was still on, but the lanyard had come free \u2014 the anchor point it was attached to was part of the scaffolding that collapsed.",
+        "verdict": "contradicts",
+        "confidence": 1.0,
+        "confidence_reasoning": "Similar to the police report, the witness statement directly contradicts the MSJ's claim about PPE. It confirms Rivera was wearing the required harness and explains the lanyard detachment was due to the anchor point failure, not a lack of PPE."
+      }
+    ],
+    "judicial_memo": null,
+    "summary": {
+      "num_citations_checked": 12,
+      "num_issues_found": 9,
+      "overall_confidence": 0.94,
+      "document_pairs_checked": 4
+    }
+  }
+}
